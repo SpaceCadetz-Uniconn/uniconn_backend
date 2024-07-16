@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../../config/database');
+const University = require('./university');
+const User = require('./user');
 
 const Student = sequelize.define('Student', {
     id: {
@@ -31,6 +33,20 @@ const Student = sequelize.define('Student', {
     city: {
         type: DataTypes.STRING,
 
+    },
+    universityId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: University,
+            key: 'id',
+        },
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: User,
+            key: 'id',
+        },
     },
 });
 

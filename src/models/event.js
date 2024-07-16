@@ -1,5 +1,8 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../../config/database');
+const Advertiser = require('./advertiser');
+const Student = require('./student');
+const Post = require('./post');
 
 const Event = sequelize.define('Event', {
   id: {
@@ -19,6 +22,27 @@ const Event = sequelize.define('Event', {
   },
   time: {
     type: DataTypes.TIME,
+  },
+  advertiserId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Advertiser,
+      key: 'id',
+    },
+  },
+  studentId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Student,
+      key: 'id',
+    },
+  },
+  postId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Post,
+      key: 'id',
+    },
   },
 });
 

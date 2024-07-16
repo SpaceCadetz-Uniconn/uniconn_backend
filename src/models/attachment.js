@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../../config/database');
+const Post = require('./post');
 
 const Attachment = sequelize.define('Attachment', {
   id: {
@@ -7,7 +8,13 @@ const Attachment = sequelize.define('Attachment', {
     autoIncrement: true,
     primaryKey: true,
   },
-  
+  postId: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Post,
+      key: 'id',
+    },
+  },
 });
 
 module.exports = Attachment;

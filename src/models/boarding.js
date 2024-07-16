@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../../config/database');
+const Post = require('./post');
 
 const Boarding = sequelize.define('Boarding', {
     id: {
@@ -10,7 +11,20 @@ const Boarding = sequelize.define('Boarding', {
     fees: {
         type: DataTypes.STRING,
     },
-
+    advertiserId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'Advertiser',
+            key: 'id',
+        },
+    },
+    postId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Post,
+            key: 'id',
+        },
+    },
 
 });
 

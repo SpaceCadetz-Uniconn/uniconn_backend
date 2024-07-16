@@ -1,5 +1,6 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../../config/database');
+const User = require('./user');
 
 const Advertiser = sequelize.define('Advertiser', {
     id: {
@@ -27,6 +28,13 @@ const Advertiser = sequelize.define('Advertiser', {
     },
     profile_pic: {
         type: DataTypes.STRING,
+    },
+    userId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: User,
+            key: 'id',
+        },
     },
 });
 

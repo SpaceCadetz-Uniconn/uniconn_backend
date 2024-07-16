@@ -1,5 +1,7 @@
 const { DataTypes } = require('sequelize');
-const sequelize = require('../config/database');
+const sequelize = require('../../config/database');
+const Student = require('./student');
+const Post = require('./post');
 
 const Merchandise = sequelize.define('Merchandise', {
     id: {
@@ -12,6 +14,20 @@ const Merchandise = sequelize.define('Merchandise', {
     },
     price: {
         type: DataTypes.STRING,
+    },
+    studentId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Student,
+            key: 'id',
+        },
+    },
+    postId: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: Post,
+            key: 'id',
+        },
     },
 });
 
